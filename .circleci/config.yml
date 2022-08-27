@@ -20,26 +20,24 @@ jobs:
           key: node-packages
       - run: npm i
       - run: npm run test
-  # analyze:
-  #   docker:
-  #     - image: circleci/node:13.8.0
-  #   steps:
-  #     - checkout
-  #     - restore_cache:
-  #       keys:
-  #         - "node-packages"
-  #     - run: npm i
-  #     - run: npm run audit
+  analyze:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - "node-packages"
+      - run: npm i
+      - run: npm run audit
 
 workflows:
   my_workflow:
     jobs:
       - build
       - test:
-        jobRef:
           requires:
             - build
-      # - analyze:
-      #   jobRef:
-      #     requires:
-      #       - test
+      - analyze:
+          requires:
+            - test

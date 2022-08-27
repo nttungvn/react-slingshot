@@ -17,20 +17,19 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-        keys:
-          - "node-packages"
+        key: "node-packages"
       - run: npm i
       - run: npm run test
-  analyze:
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - checkout
-      - restore_cache:
-        keys:
-          - "node-packages"
-      - run: npm i
-      - run: npm run audit
+  # analyze:
+  #   docker:
+  #     - image: circleci/node:13.8.0
+  #   steps:
+  #     - checkout
+  #     - restore_cache:
+  #       keys:
+  #         - "node-packages"
+  #     - run: npm i
+  #     - run: npm run audit
 
 workflows:
   my_workflow:

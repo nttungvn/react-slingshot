@@ -9,7 +9,7 @@ jobs:
       - save_cache:
           key: "node-packages"
           paths:
-            - "/src/node-packages"
+            - /src/node_modules
       - run: npm run lint
   test:
     docker:

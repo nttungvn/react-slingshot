@@ -1,0 +1,46 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - run: npm i
+      - save_cache:
+          paths:
+            - "/src/node-packages"
+          key: "node-packages"
+      - run: npm run lint
+  test:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - restore_cache:
+        keys:
+          - "node-packages"
+      - run: npm i
+      - run: npm run test
+  analyze:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - restore_cache:
+        keys:
+          - "node-packages"
+      - run: npm i
+      - run: npm run audit
+
+workflows:
+  my_workflow:
+    jobs:
+      - build
+      - test:
+        jobRef:
+          requires:
+            - build
+      - audit:
+        jobRef:
+          requires:
+            - test

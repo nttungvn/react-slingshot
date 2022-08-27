@@ -17,8 +17,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-        keys:
-          - "node-packages"
+        key: "node-packages"
       - run: npm i
       - run: npm run test
   analyze:
@@ -27,8 +26,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-        keys:
-          - "node-packages"
+        key: "node-packages"
       - run: npm i
       - run: npm run audit
 

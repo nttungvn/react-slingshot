@@ -39,7 +39,7 @@ workflows:
         jobRef:
           requires:
             - build
-      - analyze:
-        jobRef:
-          requires:
-            - test
+      # - analyze:
+      #   jobRef:
+      #     requires:
+      #       - test

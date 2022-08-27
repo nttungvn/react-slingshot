@@ -29,7 +29,7 @@ jobs:
           keys:
           - "node-packages"
       - run: npm i
-      - run: npm run audit
+      - run: npm audit
 
 workflows:
   my_workflow:

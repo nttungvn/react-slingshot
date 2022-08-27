@@ -17,9 +17,9 @@ jobs:
     steps:
       - checkout
       - restore_cache: 
-        key:  node-packages
-      - run:  npm i
-      - run:  npm run test
+        key: node-packages
+      - run: npm i
+      - run: npm run test
   # analyze:
   #   docker:
   #     - image: circleci/node:13.8.0
@@ -35,10 +35,10 @@ workflows:
   my_workflow:
     jobs:
       - build
-      - test:
-        jobRef:
-          requires:
-            - build
+      # - test:
+      #   jobRef:
+      #     requires:
+      #       - build
       # - analyze:
       #   jobRef:
       #     requires:

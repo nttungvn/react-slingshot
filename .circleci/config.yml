@@ -38,7 +38,7 @@ workflows:
         jobRef:
           requires:
             - build
-      - audit:
+      - analyze:
         jobRef:
           requires:
             - test

@@ -17,7 +17,7 @@ jobs:
     steps:
       - checkout
       - restore_cache: 
-        key: node-packages
+          key: node-packages
       - run: npm i
       - run: npm run test
   # analyze:
@@ -35,10 +35,10 @@ workflows:
   my_workflow:
     jobs:
       - build
-      # - test:
-      #   jobRef:
-      #     requires:
-      #       - build
+      - test:
+        jobRef:
+          requires:
+            - build
       # - analyze:
       #   jobRef:
       #     requires:

@@ -7,9 +7,9 @@ jobs:
       - checkout
       - run: npm i
       - save_cache:
+          key: "node-packages"
           paths:
             - "/src/node-packages"
-          key: "node-packages"
       - run: npm run lint
   test:
     docker:
@@ -17,9 +17,8 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-        key: "node-packages"
-      - run: npm i
-      - run: npm run test
+        keys:
+          - "node-packages"
   # analyze:
   #   docker:
   #     - image: circleci/node:13.8.0
